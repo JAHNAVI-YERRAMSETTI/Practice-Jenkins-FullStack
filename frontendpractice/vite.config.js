@@ -6,8 +6,5 @@ export default defineConfig({
   plugins: [react()],
   server: {
     port: 2929,   
-    proxy: {
-      "/api": "http://localhost:2052",  // backend port
-    },
   },
 })
