@@ -1,5 +1,5 @@
 const config = {
-  backendUrl: "http://localhost:2052/api"
+  apiBaseUrl: "http://localhost:2052/myspringbootproject"
 };
 
-export default config;
+export default config;
