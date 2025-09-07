@@ -1,0 +1,15 @@
+# Eclipse / IDE
+.metadata/
+*.classpath
+*.project
+*.settings/
+
+# Node.js
+node_modules/
+dist/
+dist-ssr/
+
+# Spring Boot / Maven
+target/
+*.war
+*.jar
