@@ -217,9 +217,9 @@ export default function Home() {
             border: "1px solid #ccc"
           }}>
             <h3 style={{ margin: "0 0 10px 0", color: "black" }}>Product Found</h3>
-            <p><strong>ID:</strong> {searchResult.id}</p>
-            <p><strong>Name:</strong> {searchResult.name}</p>
-            <p><strong>Price:</strong> ${searchResult.price}</p>
+            <p style={{ color: "black" }}><strong>ID:</strong> {searchResult.id}</p>
+            <p style={{ color: "black" }}><strong>Name:</strong> {searchResult.name}</p>
+            <p style={{ color: "black" }}><strong>Price:</strong> ${searchResult.price}</p>
           </div>
         )}
       </div>
