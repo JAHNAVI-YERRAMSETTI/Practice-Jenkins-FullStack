@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import config from "./config";
 
 export default function AddProduct() {
   const [product, setProduct] = useState({ name: "", price: "" });
@@ -12,7 +13,7 @@ export default function AddProduct() {
 
   const loadProducts = () => {
     axios
-      .get("http://localhost:2052/api/products")
+      .get(`${config.apiBaseUrl}/products`)
       .then((res) => setProducts(res.data))
       .catch(() => console.error("Error fetching products"));
   };
@@ -28,22 +29,23 @@ export default function AddProduct() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:2052/api/products", product);
+      await axios.post(`${config.apiBaseUrl}/products`, product);
       alert("Product added successfully!");
       setProduct({ name: "", price: "" });
       loadProducts();
-    } catch (err) {
-      alert("Error adding product.");
-    }
+    } catch {
+  alert("Error adding product.");
+}
+
   };
 
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this product?")) {
       try {
-        await axios.delete(`http://localhost:2052/api/products/${id}`);
+        await axios.delete(`${config.apiBaseUrl}/products/${id}`);
         loadProducts();
         alert("Product deleted successfully!");
-      } catch (err) {
+      } catch {
         alert("Error deleting product.");
       }
     }
@@ -60,12 +62,12 @@ export default function AddProduct() {
 
   const saveEdit = async () => {
     try {
-      await axios.put(`http://localhost:2052/api/products/${editId}`, editData);
+      await axios.put(`${config.apiBaseUrl}/products/${editId}`, editData);
       setEditId(null);
       setEditData({ name: "", price: "" });
       loadProducts();
       alert("Product updated successfully!");
-    } catch (err) {
+    } catch{
       alert("Error updating product.");
     }
   };
@@ -73,10 +75,10 @@ export default function AddProduct() {
   const handleSearch = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.get(`http://localhost:2052/api/products/${searchId}`);
+      const res = await axios.get(`${config.apiBaseUrl}/products/${searchId}`);
       setSearchResult(res.data);
       setSearchError("");
-    } catch (err) {
+    } catch{
       setSearchError("Product not found");
       setSearchResult(null);
     }

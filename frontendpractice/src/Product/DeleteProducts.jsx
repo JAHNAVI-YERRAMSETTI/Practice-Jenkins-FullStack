@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import config from "./config";
 
 export default function DeleteProducts() {
   const [id, setId] = useState("");
@@ -8,10 +9,11 @@ export default function DeleteProducts() {
   const handleDelete = async (e) => {
     e.preventDefault();
     try {
-      await axios.delete(`http://localhost:2052/api/products/${id}`);
+      await axios.delete(`${config.apiBaseUrl}/products/${id}`);
       setMessage(`Product with ID ${id} deleted successfully.`);
       setId("");
     } catch (err) {
+      console.error("Error deleting product:", err);
       setMessage("Error deleting product. Please check the ID.");
     }
   };

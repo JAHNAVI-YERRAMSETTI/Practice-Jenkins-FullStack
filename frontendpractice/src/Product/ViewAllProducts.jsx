@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import config from "../config"; // adjust the path if needed
 
 export default function ViewAllProducts() {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
     axios
-      .get("http://localhost:2052/api/products")
+      .get(`${config.apiBaseUrl}/products`) // use config.apiBaseUrl
       .then((res) => setProducts(res.data))
       .catch(() => console.error("Error fetching products"));
   }, []);

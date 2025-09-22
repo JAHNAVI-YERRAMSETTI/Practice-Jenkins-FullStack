@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import config from "../config"; // adjust path if needed
 
 export default function ViewProductById() {
   const [id, setId] = useState("");
@@ -9,10 +10,10 @@ export default function ViewProductById() {
   const handleSearch = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.get(`http://localhost:2052/api/products/${id}`);
+      const res = await axios.get(`${config.apiBaseUrl}/products/${id}`); // use config.apiBaseUrl
       setProduct(res.data);
       setError("");
-    } catch (err) {
+    } catch {
       setError("Product not found or error fetching product.");
       setProduct(null);
     }

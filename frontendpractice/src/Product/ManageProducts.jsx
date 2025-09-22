@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import config from "../config"; // adjust path if config.js is elsewhere
 
 export default function ManageProducts() {
   const [products, setProducts] = useState([]);
@@ -8,7 +9,7 @@ export default function ManageProducts() {
 
   const loadProducts = () => {
     axios
-      .get("http://localhost:2052/api/products")
+      .get(`${config.apiBaseUrl}/products`)
       .then((res) => setProducts(res.data))
       .catch(() => console.error("Error fetching products"));
   };
@@ -19,7 +20,7 @@ export default function ManageProducts() {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:2052/api/products/${id}`);
+      await axios.delete(`${config.apiBaseUrl}/products/${id}`);
       loadProducts();
     } catch (err) {
       console.error("Error deleting product", err);
@@ -37,7 +38,7 @@ export default function ManageProducts() {
 
   const saveEdit = async () => {
     try {
-      await axios.put(`http://localhost:2052/api/products/${editId}`, editData);
+      await axios.put(`${config.apiBaseUrl}/products/${editId}`, editData);
       setEditId(null);
       setEditData({ name: "", price: "" });
       loadProducts();
